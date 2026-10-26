@@ -521,16 +521,54 @@ cb=googleTranslateElementInit">
           max-width: 100%;
         }
       }
+
+      /* Match the section heading used on the other pages */
+      .rbc-modern-head--center {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.25rem;
+        text-align: center;
+      }
+
+      .rbc-modern-head--center .site-heading {
+        width: 100%;
+        margin-bottom: 0;
+      }
+
+      .rbc-modern-head--center h2 {
+        font-family: 'Manrope', sans-serif;
+        font-size: 36px;
+        letter-spacing: 0;
+        line-height: 1.2;
+        margin-bottom: 0;
+        color: var(--color-heading);
+      }
+
+      .rbc-modern-head--center .rbc-modern-head__right {
+        align-self: center;
+      }
+
+      @media (max-width: 768px) {
+        .rbc-modern-head--center {
+          align-items: center;
+        }
+
+        .rbc-modern-head--center h2 {
+          font-size: 30px;
+        }
+      }
     </style>
 
     <section class="rbc-modern-section">
       <div class="rbc-inner">
 
         <!-- heading + arrows -->
-        <div class="rbc-modern-head">
-          <div class="rbc-modern-head__left">
-            <span class="rbc-eyebrow">Premium Coir Range</span>
-            <h2>Our <em>Products</em></h2>
+        <div class="rbc-modern-head rbc-modern-head--center">
+          <div class="site-heading text-center">
+            <h5 class="sub-title">Premium Coir Range</h5>
+            <h2 class="title">Our Products</h2>
+            <div class="devider"></div>
           </div>
           <div class="rbc-modern-head__right">
             <button class="rbc-nav-btn" id="rbcPrev" aria-label="Previous">
