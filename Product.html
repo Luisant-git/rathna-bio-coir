@@ -343,10 +343,54 @@ cb=googleTranslateElementInit">
         font-size: 0.85rem;
       }
 
+      /* Space at the sides so the arrow buttons never sit on a card */
+      .rbc-carousel {
+        position: relative;
+        padding: 0 62px;
+      }
+
       .rbc-swiper {
         position: relative;
+        padding-top: 16px !important;
+        margin-top: -16px;
         padding-bottom: 3.25rem !important;
-        overflow: visible !important;
+        overflow: hidden !important;
+      }
+
+      /* Arrow buttons pinned to the left / right edges of the carousel */
+      .rbc-swiper-nav {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        pointer-events: none;
+      }
+
+      .rbc-swiper-nav .rbc-nav-btn {
+        position: absolute;
+        top: calc(50% - 18px);
+        transform: translateY(-50%);
+        pointer-events: auto;
+        background: #ffffff;
+        box-shadow: 0 10px 24px -8px rgba(23, 40, 26, 0.28);
+      }
+
+      .rbc-swiper-nav #rbcPrev {
+        left: 0;
+      }
+
+      .rbc-swiper-nav #rbcNext {
+        right: 0;
+      }
+
+      .rbc-swiper-nav .rbc-nav-btn:hover {
+        background: var(--rbc-green);
+        border-color: var(--rbc-green);
+        color: #fff;
+        transform: translateY(calc(-50% - 2px));
+      }
+
+      .rbc-swiper-nav .rbc-nav-btn:active {
+        transform: translateY(-50%);
       }
 
       .rbc-swiper .swiper-slide {
@@ -545,10 +589,6 @@ cb=googleTranslateElementInit">
         color: var(--color-heading);
       }
 
-      .rbc-modern-head--center .rbc-modern-head__right {
-        align-self: center;
-      }
-
       @media (max-width: 768px) {
         .rbc-modern-head--center {
           align-items: center;
@@ -557,32 +597,37 @@ cb=googleTranslateElementInit">
         .rbc-modern-head--center h2 {
           font-size: 30px;
         }
+
+        .rbc-carousel {
+          padding: 0 48px;
+        }
+
+        .rbc-swiper-nav #rbcPrev {
+          left: 0;
+        }
+
+        .rbc-swiper-nav #rbcNext {
+          right: 0;
+        }
       }
     </style>
 
     <section class="rbc-modern-section">
       <div class="rbc-inner">
 
-        <!-- heading + arrows -->
+        <!-- heading -->
         <div class="rbc-modern-head rbc-modern-head--center">
           <div class="site-heading text-center">
             <h5 class="sub-title">Premium Coir Range</h5>
             <h2 class="title">Our Products</h2>
             <div class="devider"></div>
           </div>
-          <div class="rbc-modern-head__right">
-            <button class="rbc-nav-btn" id="rbcPrev" aria-label="Previous">
-              <i class="fas fa-arrow-left"></i>
-            </button>
-            <button class="rbc-nav-btn" id="rbcNext" aria-label="Next">
-              <i class="fas fa-arrow-right"></i>
-            </button>
-          </div>
         </div>
 
         <!-- swiper with slow autoplay -->
-        <div class="swiper rbc-swiper" id="rbcProductSwiper">
-          <div class="swiper-wrapper">
+        <div class="rbc-carousel">
+          <div class="swiper rbc-swiper" id="rbcProductSwiper">
+            <div class="swiper-wrapper">
 
             <!-- Card 1 -->
             <div class="swiper-slide">
@@ -666,8 +711,18 @@ cb=googleTranslateElementInit">
 
           </div>
 
-          <!-- pagination -->
-          <div class="swiper-pagination" id="rbcPagination"></div>
+            <!-- pagination -->
+            <div class="swiper-pagination" id="rbcPagination"></div>
+          </div>
+
+          <div class="rbc-swiper-nav">
+            <button class="rbc-nav-btn" id="rbcPrev" aria-label="Previous">
+              <i class="fas fa-arrow-left"></i>
+            </button>
+            <button class="rbc-nav-btn" id="rbcNext" aria-label="Next">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
         </div>
 
       </div>
@@ -682,7 +737,7 @@ cb=googleTranslateElementInit">
           if (!el) return;
 
           var swiper = new Swiper(el, {
-            slidesPerView: 1.15,
+            slidesPerView: 1,
             spaceBetween: 20,
             centeredSlides: false,
             grabCursor: true,
@@ -702,10 +757,9 @@ cb=googleTranslateElementInit">
               prevEl: '#rbcPrev'
             },
             breakpoints: {
-              480: { slidesPerView: 1.6, spaceBetween: 20 },
-              640: { slidesPerView: 2.1, spaceBetween: 24 },
-              900: { slidesPerView: 3,   spaceBetween: 26 },
-              1200: { slidesPerView: 4,  spaceBetween: 28 }
+              600: { slidesPerView: 2, spaceBetween: 24 },
+              900: { slidesPerView: 3, spaceBetween: 26 },
+              1200: { slidesPerView: 4, spaceBetween: 28 }
             },
             a11y: { enabled: true }
           });
