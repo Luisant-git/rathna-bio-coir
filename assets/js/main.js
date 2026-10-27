@@ -683,17 +683,36 @@
 							comments: $('#comments').val()
 						},
 						function(data) {
-							document.getElementById('message').innerHTML = data;
-							$('#message').slideDown('slow');
 							$('.contact-form img.loader').fadeOut('slow', function() {
-								$(this).remove()
+								$(this).remove();
 							});
 							$('#submit').removeAttr('disabled');
+
+							// Check if success response
+							if (data.indexOf('alert-success') !== -1) {
+								// Show thank you modal
+								$('#thankYouModal').addClass('active');
+								// Clear form fields
+								formInstance[0].reset();
+								// Auto close after 5 seconds
+								setTimeout(function() {
+									$('#thankYouModal').removeClass('active');
+								}, 5000);
+							} else {
+								// Show error inline
+								document.getElementById('message').innerHTML = data;
+								$('#message').slideDown('slow');
+							}
 						}
 					);
 				});
 				return false;
 			});
+		});
+
+		// Close modal on button click or overlay click
+		$(document).on('click', '.thank-you-modal-close, .thank-you-modal-overlay', function() {
+			$('#thankYouModal').removeClass('active');
 		});
 
 		/* ==================================================

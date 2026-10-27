@@ -6731,6 +6731,105 @@ footer {
 }
 
 /* ============================================================== 
+     # Thank You Modal
+=================================================================== */
+
+.thank-you-modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	z-index: 99999;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	backdrop-filter: blur(4px);
+}
+
+.thank-you-modal-overlay.active {
+	opacity: 1;
+	visibility: visible;
+}
+
+.thank-you-modal-content {
+	background: #fff;
+	border-radius: 16px;
+	padding: 50px 40px;
+	max-width: 450px;
+	width: 90%;
+	text-align: center;
+	position: relative;
+	transform: scale(0.8) translateY(30px);
+	transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+}
+
+.thank-you-modal-overlay.active .thank-you-modal-content {
+	transform: scale(1) translateY(0);
+}
+
+.thank-you-modal-icon {
+	width: 80px;
+	height: 80px;
+	background: linear-gradient(135deg, var(--color-primary), var(--color-secondary, #2ecc71));
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto 25px;
+	animation: popIn 0.5s ease 0.2s both;
+}
+
+.thank-you-modal-icon i {
+	font-size: 36px;
+	color: #fff;
+}
+
+@keyframes popIn {
+	0% { transform: scale(0); }
+	50% { transform: scale(1.2); }
+	100% { transform: scale(1); }
+}
+
+.thank-you-modal-content h3 {
+	font-size: 24px;
+	font-weight: 700;
+	color: #333;
+	margin-bottom: 12px;
+}
+
+.thank-you-modal-content p {
+	font-size: 15px;
+	color: #666;
+	line-height: 1.6;
+	margin-bottom: 25px;
+}
+
+.thank-you-modal-close {
+	display: inline-block;
+	padding: 12px 35px;
+	background: var(--color-primary);
+	color: #fff;
+	border: none;
+	border-radius: 30px;
+	font-size: 15px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.thank-you-modal-close:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================================== 
      # Scroll to Top
 =================================================================== */
 
