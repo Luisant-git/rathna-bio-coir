@@ -696,6 +696,28 @@
 			});
 		});
 
+		/* ==================================================
+		    # Scroll to Top
+		================================================== */
+		var scrollToTopBtn = $('.scroll-to-top');
+
+		// Show/hide button on scroll
+		$(window).on('scroll', function() {
+			if ($(window).scrollTop() > 500) {
+				scrollToTopBtn.addClass('show');
+				$('.whatsapp-float').addClass('show');
+			} else {
+				scrollToTopBtn.removeClass('show');
+				$('.whatsapp-float').removeClass('show');
+			}
+		});
+
+		// Scroll to top on click
+		scrollToTopBtn.on('click', function() {
+			$('html, body').animate({ scrollTop: 0 }, 800);
+			return false;
+		});
+
 	}); // end document ready function
 	
 
