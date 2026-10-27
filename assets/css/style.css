@@ -2435,6 +2435,36 @@ p {
 	cursor: default;
 }
 
+/* Contact form product dropdown - match other form fields */
+.contact-form select.nice-select,
+.contact-form .nice-select {
+	background-color: #f8f9fa !important;
+	border: none !important;
+	height: auto !important;
+	line-height: inherit !important;
+	padding: 12px 45px 12px 18px !important;
+	float: none !important;
+	position: relative !important;
+}
+.contact-form .nice-select::after {
+	border-bottom: 2px solid #999999 !important;
+	border-right: 2px solid #999999 !important;
+	content: '' !important;
+	display: block !important;
+	height: 5px !important;
+	margin-top: -6px !important;
+	pointer-events: none !important;
+	position: absolute !important;
+	right: 18px !important;
+	top: 50% !important;
+	-webkit-transform: rotate(45deg) !important;
+	transform: rotate(45deg) !important;
+	width: 5px !important;
+}
+.contact-form .nice-select .list {
+	background-color: #fff !important;
+}
+
 .no-csspointerevents .nice-select .list {
 	display: none;
 }

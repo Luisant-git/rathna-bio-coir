@@ -654,6 +654,11 @@
 		});
 
 
+	/* ==================================================
+	    Nice Select Init
+	================================================== */
+	$('select.nice-select').niceSelect();
+
 		/* ==================================================
 		    Contact Form Validations
 		================================================== */
@@ -674,6 +679,7 @@
 							name: $('#name').val(),
 							email: $('#email').val(),
 							phone: $('#phone').val(),
+							product: $('#product').val(),
 							comments: $('#comments').val()
 						},
 						function(data) {
