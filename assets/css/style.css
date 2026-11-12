@@ -2634,7 +2634,8 @@ p {
 }
 
 .top-style-one .logo img {
-	height: 100px;
+	height: 140px;
+	width: 180px;
 }
 
 .top-style-one .social li {
@@ -6533,7 +6534,8 @@ footer {
 }
 
 .footer-item .logo {
-	height: 60px;
+	height: 80px;
+	width: 110px;
 }
 
 .footer-item .widget-title {

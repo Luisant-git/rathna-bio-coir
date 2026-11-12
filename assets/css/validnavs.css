@@ -185,7 +185,8 @@ Version: 1.0
 
 .navbar-brand>img {
 	display: block;
-	height: 60px;
+	height: 80px;
+	width: 110px;
 }
 
 .navbar-toggle {
@@ -866,7 +867,8 @@ body {
 }
 
 .side .widget .logo img {
-	height: 60px;
+	height: 80px;
+	width: 110px;
 }
 
 body.on-side nav.navbar::after {
@@ -2314,7 +2316,8 @@ nav.navbar.validnavs.brand-center {
 
 	.navbar-brand>img {
 		height: auto;
-		max-height: 60px;
+		max-height: 80px;
+		width: 110px;
 	}
 
 	nav.navbar.validnavs.navbar-fixed .logo-display {
@@ -2656,12 +2659,14 @@ nav.navbar.validnavs .navbar-collapse.collapse button i {
 @media only screen and (max-width: 1023px) {
 	nav.navbar.validnavs .navbar-collapse.collapse.show img {
 		display: inline-block;
-		height: 60px;
+		height: 80px;
+		width: 110px;
 	}
 
 	nav.navbar.validnavs .navbar-collapse.collapse img {
 		display: inline-block;
-		height: 60px;
+		height: 80px;
+		width: 110px;
 	}
 }
 
