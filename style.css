@@ -36,3 +36,84 @@
 .top-style-one .info li .content {
     margin-bottom: 0;
 }
+
+/* --------------------------------------------------------------------------
+   Compact main header / navigation bar
+   -------------------------------------------------------------------------- */
+nav.navbar.validnavs {
+    padding: 6px 0;
+}
+
+nav.navbar.less-logo ul.nav > li > a {
+    padding: 14px 16px;
+}
+
+/* 1200–1350px: the theme forces larger link padding with !important */
+@media only screen and (min-width: 1200px) and (max-width: 1350px) {
+    .navbar.validnavs.navbar-default .navbar-nav li a {
+        padding: 14px 10px !important;
+    }
+}
+
+/* 1024–1199px: tighter links so the header stays on one row */
+@media only screen and (min-width: 1024px) and (max-width: 1199px) {
+    .navbar.validnavs.navbar-default .navbar-nav li a {
+        padding: 14px 8px !important;
+    }
+}
+
+/* Tablet: the top bar already shows the phone, so drop the opening hours
+   below 1280px to keep the header compact and on a single row. */
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+    .navbar .attr-right {
+        display: none;
+    }
+}
+
+/* 1024–1038px: the navigation script keeps the mobile drawer until the client
+   width exceeds 1023px, while the CSS hides the mobile header at 1024px.
+   Show the mobile header + toggle so the menu is never left without a control. */
+@media only screen and (min-width: 1024px) and (max-width: 1038px) {
+    .navbar.less-logo .navbar-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    nav.navbar.validnavs .navbar-toggle {
+        display: inline-block;
+        padding: 10px 0;
+        font-size: 22px;
+    }
+}
+
+/* Compact hamburger on small screens */
+@media only screen and (max-width: 1023px) {
+    nav.navbar.validnavs .navbar-toggle {
+        padding: 10px 0;
+    }
+}
+
+/* Keep the sticky navigation on one row: smaller brand + compact links */
+nav.navbar.less-logo.sticked .navbar-brand > img {
+    width: 44px;
+    height: 44px;
+}
+
+nav.navbar.validnavs .attr-right .attr-nav li a {
+    padding: 14px 0;
+}
+
+/* Square brand logo */
+.navbar-brand > img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
+
+/* Footer logo */
+.footer-item .logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
