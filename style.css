@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Rathna Bio Coir — custom site overrides
+   This file is loaded after the theme styles on every page.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Compact header top bar
+   -------------------------------------------------------------------------- */
+.top-style-one .logo {
+    padding: 9px 0;
+}
+
+.top-style-one .logo img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.top-style-one .info li i {
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 15px;
+    margin-right: 14px;
+}
+
+.top-style-one .info li span {
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.top-style-one .info li a {
+    font-size: 15px;
+}
+
+.top-style-one .info li .content {
+    margin-bottom: 0;
+}
