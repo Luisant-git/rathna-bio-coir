@@ -508,10 +508,10 @@
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
-        width: 52px !important;
-        height: 52px !important;
-        min-width: 52px !important;
-        min-height: 52px !important;
+        width: 60px !important;
+        height: 60px !important;
+        min-width: 60px !important;
+        min-height: 60px !important;
         background: #ffffff !important;
         border-radius: 50% !important;
         box-shadow: 0 0 0 2.5px rgba(255, 255, 255, 0.4), 0 4px 14px rgba(0, 0, 0, 0.28) !important;
@@ -599,11 +599,14 @@
     nav.navbar.validnavs.mobile-sidenav .navbar-collapse.collapse.collapse-mobile {
         position: fixed !important;
         top: 0 !important;
+        bottom: 0 !important;
         left: -100% !important;
         width: clamp(280px, 84vw, 340px) !important;
         max-width: 88vw !important;
         height: 100vh !important;
         height: 100dvh !important;
+        max-height: none !important;
+        box-sizing: border-box !important;
         min-height: 0 !important;
         margin: 0 !important;
         padding: calc(76px + env(safe-area-inset-top, 0px)) 0 calc(26px + env(safe-area-inset-bottom, 0px)) !important;
@@ -657,20 +660,24 @@
         background: #e2e8d4 !important;
         transform: rotate(90deg) !important;
     }
-    .rathna-header-wrapper .navbar-nav { display: block !important; margin: 0 !important; padding: 10px 0 !important; }
-    .rathna-header-wrapper .navbar-nav > li { border-bottom: 1px solid rgba(43, 58, 16, 0.08) !important; margin: 0 !important; }
-    .rathna-header-wrapper .navbar-nav > li:last-child { border-bottom: 0 !important; }
+    .rathna-header-wrapper .navbar-nav { display: block !important; margin: 0 !important; padding: 12px !important; }
+    .rathna-header-wrapper .navbar-nav > li { border: 0 !important; margin: 0 0 5px !important; }
+    .rathna-header-wrapper .navbar-nav > li:last-child { margin-bottom: 0 !important; }
     .rathna-header-wrapper .navbar-nav > li > a {
-        min-height: 50px !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        min-height: 48px !important;
         display: flex !important;
         align-items: center !important;
         gap: 12px !important;
-        padding: 14px 22px !important;
+        padding: 12px !important;
         font-size: 14.5px !important;
         font-weight: 700 !important;
         color: var(--nav-text-color) !important;
         line-height: 1.35 !important;
         text-decoration: none !important;
+        border: 0 !important;
+        border-radius: 9px !important;
         transition: all 0.2s ease !important;
     }
     .rathna-header-wrapper .navbar-nav > li > a i {
@@ -681,14 +688,12 @@
         font-size: 15px !important;
     }
     .rathna-header-wrapper .navbar-nav > li.active > a {
-        background: var(--nav-cream) !important;
-        color: var(--home-btn-green) !important;
-        margin: 0 !important;
-        padding: 14px 22px !important;
-        border-left: 4px solid var(--home-btn-green) !important;
-        border-radius: 0 !important;
+        background: var(--home-btn-green) !important;
+        color: #ffffff !important;
+        border-left: 3px solid var(--muted-green) !important;
+        padding-left: 9px !important;
     }
-    .rathna-header-wrapper .navbar-nav > li.active > a i { color: var(--home-btn-green) !important; }
+    .rathna-header-wrapper .navbar-nav > li.active > a i { color: #ffffff !important; }
     .rathna-header-wrapper .navbar-header .navbar-toggle:focus-visible,
     .rathna-header-wrapper .navbar-collapse > .navbar-toggle:focus-visible,
     .rathna-header-wrapper .navbar-nav > li > a:focus-visible {
