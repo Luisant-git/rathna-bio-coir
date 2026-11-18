@@ -360,11 +360,23 @@ p {
 }
 
 .rathna-header-wrapper .enquiry-nav-btn:hover {
-    background: #3650FA; /* Replace with your original button color */
+    background: transparent;
     color: #fff;
     transform: scale(1.1);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     animation: enquiryBtnPulse 0.4s ease-in-out;
+}
+
+.rathna-header-wrapper .attr-right {
+    display: block !important;
+}
+
+/* Hide mobile menu enquiry item on desktop - only show on mobile */
+@media (min-width: 1024px) {
+    #navbar-menu .open-enquiry-modal,
+    .navbar-nav .open-enquiry-modal {
+        display: none !important;
+    }
 }
 
 .rathna-header-wrapper .enquiry-nav-btn:hover::before {
