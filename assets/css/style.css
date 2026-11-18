@@ -327,6 +327,71 @@ p {
 	font-family: var(--font-default);
 }
 
+/* --- Enquiry Now Navbar Button --- */
+.rathna-header-wrapper .enquiry-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    background: var(--color-primary);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.rathna-header-wrapper .enquiry-nav-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: none;
+    z-index: 2;
+}
+
+.rathna-header-wrapper .enquiry-nav-btn:hover {
+    background: #0f3d2e;
+    color: #f7c35f;
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(15, 61, 46, 0.5);
+    border-color: #0f3d2e;
+    animation: enquiryBtnPulse 0.4s ease-in-out;
+}
+
+.rathna-header-wrapper .enquiry-nav-btn:hover::before {
+    left: 100%;
+    transition: all 0.5s ease;
+}
+
+.rathna-header-wrapper .enquiry-nav-btn i {
+    font-size: 14px;
+    position: relative;
+    z-index: 3;
+    animation: enquiryIconBounce 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes enquiryBtnPulse {
+    0% { transform: scale(1); box-shadow: 0 3px 10px rgba(73, 167, 96, 0.15); }
+    50% { transform: scale(1.1); box-shadow: 0 8px 25px rgba(73, 167, 96, 0.5); }
+    100% { transform: scale(1.1); box-shadow: 0 8px 25px rgba(73, 167, 96, 0.4); }
+}
+
+@keyframes enquiryIconBounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-3px); }
+}
+
+
 
 /* ============================================================== 
     # Helper CSS
