@@ -384,156 +384,324 @@
 }
 
 @media (max-width: 1023px) {
-    .rathna-header-wrapper { background: var(--g-bottom); }
+    .rathna-header-wrapper {
+        background: var(--g-bottom) !important;
+        position: relative !important;
+        z-index: 999 !important;
+    }
     .rathna-header-wrapper .top-bar,
     .rathna-header-wrapper .logo-column,
-    .rathna-header-wrapper .attr-right { display: none; }
+    .rathna-header-wrapper .attr-right {
+        display: none !important;
+    }
 
     .rathna-header-wrapper .rathna-nav-header {
-        margin: 0;
-        padding: 10px 0;
-        background: var(--g-bottom);
+        margin: 0 !important;
+        padding: 0 !important;
+        background: linear-gradient(180deg, var(--g-top) 0%, var(--g-bottom) 100%) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22) !important;
+        position: relative !important;
     }
+
+    .rathna-header-wrapper nav.navbar.validnavs {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .rathna-header-wrapper nav.navbar.validnavs > .container {
+        padding: 0 16px !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
     .rathna-header-wrapper .nav-container-pill {
-        min-height: 0;
-        padding: 0;
-        background: transparent;
-        border-radius: 0;
-        box-shadow: none;
-    }
-    /* --- Mobile header: hamburger (left) + centred logo --- */
-    .rathna-header-wrapper .navbar-header {
-        display: grid !important;
-        grid-template-columns: 44px 1fr 44px;
-        align-items: center;
-        width: 100%;
-    }
-    .rathna-header-wrapper .navbar-header .navbar-toggle {
-        grid-column: 1;
         display: flex !important;
-        align-items: center;
-        justify-content: center;
-        width: 44px;
-        height: 44px;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        min-height: 64px !important;
+        height: 64px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        position: relative !important;
+    }
+
+    /* Clear pseudo elements from Bootstrap / validnavs */
+    .rathna-header-wrapper .navbar-header::before,
+    .rathna-header-wrapper .navbar-header::after {
+        display: none !important;
+        content: none !important;
+    }
+
+    /* --- Mobile header flex row: Hamburger (Left), Logo (Dead-Center), Action (Right) --- */
+    .rathna-header-wrapper .navbar-header {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        height: 64px !important;
+        position: relative !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        float: none !important;
+    }
+
+    /* --- Hamburger Button (Left) --- */
+    .rathna-header-wrapper .navbar-header .navbar-toggle {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
         margin: 0 !important;
         padding: 0 !important;
         line-height: 1 !important;
-        color: #fff;
-        background: transparent;
-        border: 0;
-        border-radius: 8px;
-        font-size: 22px;
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.14) !important;
+        border: 1px solid rgba(255, 255, 255, 0.28) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+        font-size: 20px !important;
+        cursor: pointer !important;
+        position: relative !important;
+        z-index: 5 !important;
+        float: none !important;
+        transition: all 0.22s ease !important;
+        -webkit-tap-highlight-color: transparent !important;
     }
+
+    .rathna-header-wrapper .navbar-header .navbar-toggle i {
+        display: block !important;
+        font-size: 20px !important;
+        line-height: 1 !important;
+        color: #ffffff !important;
+        margin: 0 !important;
+    }
+
+    .rathna-header-wrapper .navbar-header .navbar-toggle:hover,
+    .rathna-header-wrapper .navbar-header .navbar-toggle:focus,
+    .rathna-header-wrapper .navbar-header .navbar-toggle:active {
+        background: rgba(255, 255, 255, 0.24) !important;
+        border-color: rgba(255, 255, 255, 0.5) !important;
+        color: #ffffff !important;
+        transform: scale(1.04) !important;
+        outline: none !important;
+    }
+
+    /* --- Brand Logo (True Horizontal & Vertical Center) --- */
     .rathna-header-wrapper .navbar-header .navbar-brand {
-        position: static !important;
-        top: auto !important;
-        left: auto !important;
-        transform: none !important;
-        grid-column: 2;
-        justify-self: center;
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        margin: 0 !important;
+        padding: 3px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 52px !important;
+        height: 52px !important;
+        min-width: 52px !important;
+        min-height: 52px !important;
+        background: #ffffff !important;
+        border-radius: 50% !important;
+        box-shadow: 0 0 0 2.5px rgba(255, 255, 255, 0.4), 0 4px 14px rgba(0, 0, 0, 0.28) !important;
+        z-index: 4 !important;
+        float: none !important;
+        text-decoration: none !important;
+        transition: transform 0.22s ease, box-shadow 0.22s ease !important;
+    }
+
+    .rathna-header-wrapper .navbar-header .navbar-brand:hover,
+    .rathna-header-wrapper .navbar-header .navbar-brand:active {
+        transform: translate(-50%, -50%) scale(1.06) !important;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6), 0 6px 18px rgba(0, 0, 0, 0.32) !important;
+    }
+
+    .rathna-header-wrapper .navbar-header .navbar-brand img,
+    .rathna-header-wrapper .navbar-brand img {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+        border-radius: 50% !important;
+        display: block !important;
         margin: 0 !important;
         padding: 0 !important;
     }
-    .rathna-header-wrapper .navbar-brand img { height: 40px; width: auto; display: block; }
+
+    /* --- WhatsApp Quick Action (Right) --- */
+    .rathna-header-wrapper .navbar-header .mobile-nav-call {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+        color: #ffffff !important;
+        background: rgba(37, 211, 102, 0.25) !important;
+        border: 1px solid rgba(37, 211, 102, 0.5) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+        font-size: 22px !important;
+        cursor: pointer !important;
+        position: relative !important;
+        z-index: 5 !important;
+        text-decoration: none !important;
+        transition: all 0.22s ease !important;
+        -webkit-tap-highlight-color: transparent !important;
+    }
+
+    .rathna-header-wrapper .navbar-header .mobile-nav-call i {
+        display: block !important;
+        font-size: 22px !important;
+        line-height: 1 !important;
+        color: #25d366 !important;
+        margin: 0 !important;
+    }
+
+    .rathna-header-wrapper .navbar-header .mobile-nav-call:hover,
+    .rathna-header-wrapper .navbar-header .mobile-nav-call:active {
+        background: rgba(37, 211, 102, 0.4) !important;
+        border-color: rgba(37, 211, 102, 0.8) !important;
+        transform: scale(1.04) !important;
+    }
+
+    .rathna-header-wrapper .navbar-header .mobile-nav-call:hover i,
+    .rathna-header-wrapper .navbar-header .mobile-nav-call:active i {
+        color: #ffffff !important;
+    }
+
+    /* Fallback spacer if right button is absent */
+    .rathna-header-wrapper .navbar-header:not(:has(.mobile-nav-call))::after {
+        content: "" !important;
+        display: block !important;
+        width: 44px !important;
+        height: 44px !important;
+        visibility: hidden !important;
+    }
 
     /* --- Off-canvas sidebar menu --- */
     nav.navbar.validnavs.mobile-sidenav .navbar-collapse.collapse.collapse-mobile {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: clamp(280px, 86vw, 360px);
-        max-width: 88vw;
-        height: 100vh;
-        height: 100dvh;
-        min-height: 0;
-        margin: 0;
-        padding:
-            calc(76px + env(safe-area-inset-top, 0px))
-            0
-            calc(26px + env(safe-area-inset-bottom, 0px));
-        background: #fdfdf8;
-        border-right: 1px solid rgba(43, 58, 16, .10);
-        box-shadow: 8px 0 30px rgba(0, 0, 0, .22);
-        overflow-x: hidden;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        z-index: 1001;
-        transition: left .28s ease;
+        position: fixed !important;
+        top: 0 !important;
+        left: -100% !important;
+        width: clamp(280px, 84vw, 340px) !important;
+        max-width: 88vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: calc(76px + env(safe-area-inset-top, 0px)) 0 calc(26px + env(safe-area-inset-bottom, 0px)) !important;
+        background: #fdfdf8 !important;
+        border-right: 1px solid rgba(43, 58, 16, 0.12) !important;
+        box-shadow: 10px 0 35px rgba(0, 0, 0, 0.3) !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        overscroll-behavior: contain !important;
+        z-index: 1001 !important;
+        transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
-    nav.navbar.validnavs.mobile-sidenav .navbar-collapse.collapse.collapse-mobile.show { left: 0; }
+    nav.navbar.validnavs.mobile-sidenav .navbar-collapse.collapse.collapse-mobile.show { left: 0 !important; }
     .rathna-header-wrapper .navbar-collapse > img {
-        display: block;
-        position: absolute;
-        top: 16px;
-        left: 20px;
-        height: 36px;
-        width: auto;
+        display: block !important;
+        position: absolute !important;
+        top: calc(16px + env(safe-area-inset-top, 0px)) !important;
+        left: 20px !important;
+        height: 44px !important;
+        width: 44px !important;
+        object-fit: contain !important;
+        background: #ffffff !important;
+        border-radius: 50% !important;
+        padding: 3px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
     }
     .rathna-header-wrapper .navbar-collapse > .navbar-toggle {
-        position: absolute;
-        top: calc(10px + env(safe-area-inset-top, 0px));
-        right: 12px;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        width: 44px;
-        height: 44px;
-        margin: 0;
-        padding: 0;
-        line-height: 1;
-        color: var(--nav-text-color);
-        background: transparent;
-        border: 0;
-        border-radius: 8px;
-        font-size: 20px;
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
+        position: absolute !important;
+        top: calc(14px + env(safe-area-inset-top, 0px)) !important;
+        right: 16px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 38px !important;
+        height: 38px !important;
+        min-width: 38px !important;
+        min-height: 38px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+        color: var(--nav-text-color) !important;
+        background: #edf0e4 !important;
+        border: 1px solid rgba(43, 58, 16, 0.15) !important;
+        border-radius: 50% !important;
+        font-size: 16px !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        -webkit-tap-highlight-color: transparent !important;
     }
-    .rathna-header-wrapper .navbar-collapse > img {
-        top: calc(16px + env(safe-area-inset-top, 0px));
+    .rathna-header-wrapper .navbar-collapse > .navbar-toggle:hover {
+        background: #e2e8d4 !important;
+        transform: rotate(90deg) !important;
     }
-    .rathna-header-wrapper .navbar-nav { display: block; margin: 0; }
-    .rathna-header-wrapper .navbar-nav > li { border-bottom: 1px solid #eee; }
-    .rathna-header-wrapper .navbar-nav > li:last-child { border-bottom: 0; }
+    .rathna-header-wrapper .navbar-nav { display: block !important; margin: 0 !important; padding: 10px 0 !important; }
+    .rathna-header-wrapper .navbar-nav > li { border-bottom: 1px solid rgba(43, 58, 16, 0.08) !important; margin: 0 !important; }
+    .rathna-header-wrapper .navbar-nav > li:last-child { border-bottom: 0 !important; }
     .rathna-header-wrapper .navbar-nav > li > a {
-        min-height: 52px;
-        align-items: center;
-        gap: 12px;
-        padding: 13px 22px !important;
-        font-size: 15px;
-        line-height: 1.35;
-        text-decoration: none;
+        min-height: 50px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        padding: 14px 22px !important;
+        font-size: 14.5px !important;
+        font-weight: 700 !important;
+        color: var(--nav-text-color) !important;
+        line-height: 1.35 !important;
+        text-decoration: none !important;
+        transition: all 0.2s ease !important;
     }
     .rathna-header-wrapper .navbar-nav > li > a i {
-        width: 20px;
-        flex: 0 0 20px;
-        text-align: center;
-        color: #6b7755;
+        width: 20px !important;
+        flex: 0 0 20px !important;
+        text-align: center !important;
+        color: #6b7755 !important;
+        font-size: 15px !important;
     }
     .rathna-header-wrapper .navbar-nav > li.active > a {
         background: var(--nav-cream) !important;
         color: var(--home-btn-green) !important;
-        margin: 0;
-        padding: 13px 22px !important;
-        border-left: 4px solid var(--home-btn-green);
-        border-radius: 0;
+        margin: 0 !important;
+        padding: 14px 22px !important;
+        border-left: 4px solid var(--home-btn-green) !important;
+        border-radius: 0 !important;
     }
-    .rathna-header-wrapper .navbar-nav > li.active > a i { color: var(--home-btn-green); }
+    .rathna-header-wrapper .navbar-nav > li.active > a i { color: var(--home-btn-green) !important; }
     .rathna-header-wrapper .navbar-header .navbar-toggle:focus-visible,
     .rathna-header-wrapper .navbar-collapse > .navbar-toggle:focus-visible,
     .rathna-header-wrapper .navbar-nav > li > a:focus-visible {
-        outline: 3px solid #b9ce70;
-        outline-offset: -3px;
+        outline: 3px solid #b9ce70 !important;
+        outline-offset: -3px !important;
     }
     .rathna-header-wrapper .overlay-screen.opened {
-        z-index: 1000;
-        background: rgba(12, 24, 6, .55);
-        opacity: 1;
-        transition: opacity .28s ease;
+        z-index: 1000 !important;
+        background: rgba(12, 24, 6, 0.6) !important;
+        opacity: 1 !important;
+        transition: opacity 0.28s ease !important;
     }
-    body.nav-drawer-open { overflow: hidden; }
+    body.nav-drawer-open { overflow: hidden !important; }
 }
 
 /* ==========================================================================
