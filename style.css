@@ -279,13 +279,15 @@
 .rathna-header-wrapper .navbar-nav > li > a:hover { color: var(--home-btn-green) !important; }
 .rathna-header-wrapper .navbar-nav > li > a i { font-size: 14px; }
 
-/* Active HOME pill */
+/* Active menu item — neat pill look */
 .rathna-header-wrapper .navbar-nav > li.active > a {
     background-color: var(--home-btn-green) !important;
     color: #fff !important;
-    border-radius: 30px;
-    padding: 12px 22px !important;
-    margin: 0 10px 0 0;
+    border-radius: 30px !important;
+    padding: 11px 24px !important;
+    margin: 0 10px 0 0 !important;
+    border: 0 !important;
+    box-shadow: 0 4px 12px rgba(91, 127, 35, .30) !important;
 }
 .rathna-header-wrapper .navbar-nav > li.active > a:hover {
     background-color: #4d6e1c !important;
@@ -687,11 +689,15 @@
         color: #6b7755 !important;
         font-size: 15px !important;
     }
+    /* Active menu item (mobile drawer) — neat look with left padding */
     .rathna-header-wrapper .navbar-nav > li.active > a {
         background: var(--home-btn-green) !important;
         color: #ffffff !important;
-        border-left: 3px solid var(--muted-green) !important;
-        padding-left: 9px !important;
+        border-left: 4px solid var(--muted-green) !important;
+        border-radius: 0 10px 10px 0 !important;
+        padding: 11px 16px !important;
+        padding-left: 14px !important;
+        box-shadow: 0 2px 7px rgba(0, 0, 0, .12) !important;
     }
     .rathna-header-wrapper .navbar-nav > li.active > a i { color: #ffffff !important; }
     .rathna-header-wrapper .navbar-header .navbar-toggle:focus-visible,
