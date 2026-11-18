@@ -64,6 +64,12 @@
     .rathna-header-wrapper .top-bar::after { display: none; }
 }
 
+/* ISO certificate page: hide the corner leaf so this header matches the other inner pages */
+.cert-page .rathna-header-wrapper .top-bar::before,
+.cert-page .rathna-header-wrapper .top-bar::after {
+    display: none !important;
+}
+
 .rathna-header-wrapper .top-bar .container {
     position: relative;
     height: 100%;
@@ -407,16 +413,18 @@
         display: flex !important;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
         margin: 0 !important;
         padding: 0 !important;
         line-height: 1 !important;
         color: #fff;
         background: transparent;
         border: 0;
-        border-radius: 6px;
+        border-radius: 8px;
         font-size: 22px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
     }
     .rathna-header-wrapper .navbar-header .navbar-brand {
         position: static !important;
@@ -435,17 +443,22 @@
         position: fixed;
         top: 0;
         left: -100%;
-        width: 320px;
-        max-width: 86vw;
+        width: clamp(280px, 86vw, 360px);
+        max-width: 88vw;
         height: 100vh;
         height: 100dvh;
         min-height: 0;
         margin: 0;
-        padding: 68px 0 26px;
-        background: #fff;
-        box-shadow: 8px 0 30px rgba(0, 0, 0, .25);
+        padding:
+            calc(76px + env(safe-area-inset-top, 0px))
+            0
+            calc(26px + env(safe-area-inset-bottom, 0px));
+        background: #fdfdf8;
+        border-right: 1px solid rgba(43, 58, 16, .10);
+        box-shadow: 8px 0 30px rgba(0, 0, 0, .22);
         overflow-x: hidden;
         overflow-y: auto;
+        overscroll-behavior: contain;
         z-index: 1001;
         transition: left .28s ease;
     }
@@ -460,32 +473,59 @@
     }
     .rathna-header-wrapper .navbar-collapse > .navbar-toggle {
         position: absolute;
-        top: 10px;
+        top: calc(10px + env(safe-area-inset-top, 0px));
         right: 12px;
         display: flex !important;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
         margin: 0;
         padding: 0;
         line-height: 1;
         color: var(--nav-text-color);
         background: transparent;
         border: 0;
+        border-radius: 8px;
         font-size: 20px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
     }
-    .rathna-header-wrapper .navbar-nav { display: block; }
+    .rathna-header-wrapper .navbar-collapse > img {
+        top: calc(16px + env(safe-area-inset-top, 0px));
+    }
+    .rathna-header-wrapper .navbar-nav { display: block; margin: 0; }
     .rathna-header-wrapper .navbar-nav > li { border-bottom: 1px solid #eee; }
     .rathna-header-wrapper .navbar-nav > li:last-child { border-bottom: 0; }
-    .rathna-header-wrapper .navbar-nav > li > a { display: flex; padding: 14px 22px !important; }
+    .rathna-header-wrapper .navbar-nav > li > a {
+        min-height: 52px;
+        align-items: center;
+        gap: 12px;
+        padding: 13px 22px !important;
+        font-size: 15px;
+        line-height: 1.35;
+        text-decoration: none;
+    }
+    .rathna-header-wrapper .navbar-nav > li > a i {
+        width: 20px;
+        flex: 0 0 20px;
+        text-align: center;
+        color: #6b7755;
+    }
     .rathna-header-wrapper .navbar-nav > li.active > a {
         background: var(--nav-cream) !important;
         color: var(--home-btn-green) !important;
         margin: 0;
-        padding: 14px 22px !important;
+        padding: 13px 22px !important;
         border-left: 4px solid var(--home-btn-green);
         border-radius: 0;
+    }
+    .rathna-header-wrapper .navbar-nav > li.active > a i { color: var(--home-btn-green); }
+    .rathna-header-wrapper .navbar-header .navbar-toggle:focus-visible,
+    .rathna-header-wrapper .navbar-collapse > .navbar-toggle:focus-visible,
+    .rathna-header-wrapper .navbar-nav > li > a:focus-visible {
+        outline: 3px solid #b9ce70;
+        outline-offset: -3px;
     }
     .rathna-header-wrapper .overlay-screen.opened {
         z-index: 1000;

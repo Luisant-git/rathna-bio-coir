@@ -4,6 +4,9 @@
 <head>
     <!-- ========== Meta Tags ========== -->
      <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Rathna Bio Coir Products was founded and has its primary facility in Salem.Our primary focus is on producing 100% natural organic items such as unsealed pith block, seared pith block, and pith block, which help us stay on the correct path towards a more sustainable future for the globe.">
      <meta name="keywords" content="Coco peat blocks, 650 blocks, high ec coco peat blocks, low ec coco peat blocks">
@@ -29,7 +32,7 @@
     <link href="assets/css/helper.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/unit-test.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+    <link href="style.css?v=3" rel="stylesheet">
     <link href="assets/css/language-switcher.css" rel="stylesheet">
     <!-- ========== End Stylesheet ========== -->
 
@@ -100,7 +103,7 @@
 
                         <!-- Mobile brand + toggle -->
                         <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Open navigation menu">
                                 <i class="fa fa-bars"></i>
                             </button>
                             <a class="navbar-brand" href="index.html">
@@ -109,10 +112,10 @@
                         </div>
 
                         <!-- Menu -->
-                        <div class="collapse navbar-collapse" id="navbar-menu">
+                        <div class="collapse navbar-collapse" id="navbar-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
 
                             <img src="assets/logo.webp" alt="Logo">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Close navigation menu">
                                 <i class="fa fa-times"></i>
                             </button>
 
@@ -535,6 +538,8 @@
         var wrap = document.querySelector('.rathna-header-wrapper');
         var bar  = document.querySelector('.rathna-header-wrapper .top-bar');
         if (!wrap) return;
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        window.scrollTo(0, 0);
         var stuck = false, fullHeight = 0;
 
         function threshold() {
@@ -581,13 +586,20 @@
             if (header) header.classList.remove('adjust-height');
             sync();
         }
+        var wasOpen = false;
         function sync() {
             var open = collapse && collapse.classList.contains('show');
             document.body.classList.toggle('nav-drawer-open', !!open);
+            if (burger) burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (closeBtn) closeBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (collapse) collapse.setAttribute('aria-hidden', open ? 'false' : 'true');
             if (icon) {
                 icon.classList.toggle('fa-bars', !open);
                 icon.classList.toggle('fa-times', !!open);
             }
+            if (open && !wasOpen && closeBtn) closeBtn.focus();
+            if (!open && wasOpen && burger) burger.focus();
+            wasOpen = !!open;
         }
         // validnavs.js adds/removes the "show" class (sometimes on window load),
         // so watch the class instead of relying on click-handler order.
@@ -603,7 +615,28 @@
             });
         }
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && collapse && collapse.classList.contains('show')) closeDrawer();
+            if (!collapse || !collapse.classList.contains('show')) return;
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                closeDrawer();
+                return;
+            }
+            if (e.key === 'Tab') {
+                var focusable = Array.prototype.filter.call(
+                    collapse.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+                    function (item) { return item.offsetParent !== null; }
+                );
+                if (!focusable.length) return;
+                var first = focusable[0];
+                var last = focusable[focusable.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
         });
         window.addEventListener('resize', function () {
             if (window.innerWidth >= 1024 && collapse && collapse.classList.contains('show')) closeDrawer();
