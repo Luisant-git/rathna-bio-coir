@@ -1,119 +1,533 @@
 /* ==========================================================================
-   Rathna Bio Coir — custom site overrides
-   This file is loaded after the theme styles on every page.
+   RATHNA BIO COIR - HEADER + NAVBAR  (v2 - closer match to design)
+   Use with the header HTML already in index.html (no HTML change needed)
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   Compact header top bar
-   -------------------------------------------------------------------------- */
-.top-style-one .logo {
-    padding: 9px 0;
+:root {
+    --g-top: #46661f;          /* top bar gradient start */
+    --g-bottom: #35501a;       /* top bar gradient end (also bump colour) */
+    --home-btn-green: #5b7f23; /* Home pill */
+    --nav-cream: #f8f6ea;      /* navbar pill */
+    --hours-bg: #eef0dc;       /* opening-hours box */
+    --nav-text-color: #2b3a10; /* menu text */
+    --muted-green: #d6dec6;
+    --bar-h: 92px;             /* top bar height */
 }
 
-.top-style-one .logo img {
-    width: 80px;
-    height: 80px;
+/* --- Wrapper: transparent so the banner shows behind the pill --- */
+.rathna-header-wrapper {
+    position: relative;
+    z-index: 999;
+    background: transparent;
+}
+
+/* ==========================================================================
+   TOP BAR
+   ========================================================================== */
+.rathna-header-wrapper .top-bar {
+    position: relative;
+    z-index: 3;
+    height: var(--bar-h);
+    padding: 0 !important;
+    border: 0 !important;
+    background: linear-gradient(180deg, var(--g-top) 0%, var(--g-bottom) 100%) !important;
+    overflow: visible;
+}
+
+/* corner leaves - small, faint and kept out of the text area
+   (delete both rules if you don't want them) */
+.rathna-header-wrapper .top-bar::before,
+.rathna-header-wrapper .top-bar::after {
+    content: "";
+    position: absolute;
+    background: url(assets/img/shape/leaf.png) no-repeat center / contain;
+    pointer-events: none;
+    opacity: .55;
+    z-index: 1;
+}
+.rathna-header-wrapper .top-bar::before {      /* left: sits fully below the bar, over the navbar corner */
+    left: -24px;
+    top: calc(100% - 6px);
+    width: 70px;
+    height: 60px;
+}
+.rathna-header-wrapper .top-bar::after {       /* right: tiny, in the very top corner */
+    right: -24px;
+    top: -24px;
+    width: 64px;
+    height: 56px;
+    transform: scaleX(-1);
+}
+/* on narrower screens the text reaches the edges, so hide the leaves */
+@media (max-width: 1499px) {
+    .rathna-header-wrapper .top-bar::before,
+    .rathna-header-wrapper .top-bar::after { display: none; }
+}
+
+.rathna-header-wrapper .top-bar .container {
+    position: relative;
+    height: 100%;
+    z-index: 5;               /* text always above the leaves */
+}
+.rathna-header-wrapper .top-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 !important;
+}
+
+.rathna-header-wrapper .top-info-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: #fff;
+}
+.rathna-header-wrapper .top-info-list li {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    color: #fff;
+}
+
+/* --- Language pill --- */
+.rathna-header-wrapper .lang-item {
+    position: relative;
+    z-index: 20;              /* language dropdown opens above everything */
+    padding-right: 20px;
+    border-right: 1px solid rgba(255, 255, 255, .28);
+}
+.rathna-header-wrapper .lang-item .lang-switcher,
+.rathna-header-wrapper .lang-item .lang-fallback {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, .5);
+    border-radius: 30px;
+    background: rgba(0, 0, 0, .12);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.rathna-header-wrapper .lang-item button,
+.rathna-header-wrapper .lang-item select,
+.rathna-header-wrapper .lang-item a {
+    color: #fff;
+    background: transparent;
+    border: 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+.rathna-header-wrapper .lang-item select option { color: #222; }
+
+/* --- Phone / Email --- */
+.rathna-header-wrapper .contact-item .icon {
+    font-size: 19px;
+    margin-right: 12px;
+    color: #fff;
+    line-height: 1;
+}
+.rathna-header-wrapper .top-right .contact-item {
+    padding-left: 20px;
+    border-left: 1px solid rgba(255, 255, 255, .28);
+}
+.rathna-header-wrapper .contact-item .content {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+    text-align: left;
+}
+.rathna-header-wrapper .contact-item .content span {
+    font-size: 11px;
+    color: var(--muted-green);
+}
+.rathna-header-wrapper .contact-item .content a {
+    color: #fff !important;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+.rathna-header-wrapper .contact-item .content a:hover { color: var(--muted-green) !important; }
+
+/* --- Centre logo + curved bump with concave shoulders --- */
+.rathna-header-wrapper .logo-column {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 0;
+    height: 100%;
+    z-index: 6;
+}
+.rathna-header-wrapper .header-logo {
+    position: absolute;
+    left: -45px;               /* half of 90px */
+    top: 8px;
+    z-index: 3;
+    display: block;
+    width: 90px;
+    height: 90px;
+    padding: 3px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .3), 0 6px 14px rgba(0, 0, 0, .22);
+}
+.rathna-header-wrapper .header-logo img {
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+    border-radius: 50%;
+}
+/* the bump: continues the green below the bar */
+.rathna-header-wrapper .logo-column::before {
+    content: "";
+    position: absolute;
+    left: -100px;
+    top: calc(var(--bar-h) - 1px);
+    width: 200px;
+    height: 18px;
+    background: var(--g-bottom);
+    border-radius: 0 0 100px 100px / 0 0 18px 18px;
+    z-index: 1;
+}
+/* concave shoulders (left + right) */
+.rathna-header-wrapper .logo-column::after {
+    content: "";
+    position: absolute;
+    left: -160px;
+    top: calc(var(--bar-h) - 1px);
+    width: 320px;
+    height: 18px;
+    z-index: 0;
+    background:
+        radial-gradient(ellipse 60px 18px at 0 100%, transparent 98%, var(--g-bottom) 100%) left top / 60px 18px no-repeat,
+        radial-gradient(ellipse 60px 18px at 100% 100%, transparent 98%, var(--g-bottom) 100%) right top / 60px 18px no-repeat;
 }
 
-.top-style-one .info li i {
-    width: 42px;
-    height: 42px;
-    line-height: 42px;
-    font-size: 15px;
-    margin-right: 14px;
+/* ==========================================================================
+   NAVBAR (cream pill, sits over the banner)
+   ========================================================================== */
+.rathna-header-wrapper .rathna-nav-header {
+    position: relative;
+    z-index: 2;
+    margin-top: 0;
+    margin-bottom: -38px;      /* pill overlaps the banner underneath */
+    padding: 0;
+    background: transparent;
 }
 
-.top-style-one .info li span {
-    font-size: 12px;
-    line-height: 1.2;
+.rathna-header-wrapper nav.navbar.validnavs {
+    position: relative;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0;
 }
 
-.top-style-one .info li a {
-    font-size: 15px;
+.rathna-header-wrapper .nav-container-pill {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 64px;
+    padding: 0 12px 0 24px;
+    background: var(--nav-cream);
+    border-radius: 50px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
 }
 
-.top-style-one .info li .content {
-    margin-bottom: 0;
+.rathna-header-wrapper .navbar-collapse {
+    flex: 1 1 auto;
+    padding: 0;
+}
+.rathna-header-wrapper .navbar-nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.rathna-header-wrapper .navbar-nav > li { margin: 0; }
+.rathna-header-wrapper .navbar-nav > li > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 22px 14px !important;
+    color: var(--nav-text-color) !important;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background: transparent;
+    transition: color .25s ease, background-color .25s ease;
+}
+.rathna-header-wrapper .navbar-nav > li > a::after { display: none !important; }
+.rathna-header-wrapper .navbar-nav > li > a:hover { color: var(--home-btn-green) !important; }
+.rathna-header-wrapper .navbar-nav > li > a i { font-size: 14px; }
+
+/* Active HOME pill */
+.rathna-header-wrapper .navbar-nav > li.active > a {
+    background-color: var(--home-btn-green) !important;
+    color: #fff !important;
+    border-radius: 30px;
+    padding: 12px 22px !important;
+    margin: 0 10px 0 0;
+}
+.rathna-header-wrapper .navbar-nav > li.active > a:hover {
+    background-color: #4d6e1c !important;
+    color: #fff !important;
+}
+.rathna-header-wrapper .navbar-nav > li.active > a i { font-size: 14px; }
+
+/* --- Opening hours --- */
+.rathna-header-wrapper .attr-right {
+    flex: 0 0 auto;
+    padding-left: 18px;
+    margin-left: 8px;
+    border-left: 1px solid rgba(43, 58, 16, .25);
+}
+.rathna-header-wrapper .attr-nav { display: flex; align-items: center; }
+.rathna-header-wrapper .opening-hours {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 24px 9px 16px;
+    background: var(--hours-bg);
+    border-radius: 40px;
+    list-style: none;
+}
+.rathna-header-wrapper .opening-hours .icon {
+    font-size: 24px;
+    line-height: 1;
+    color: var(--g-bottom);
+}
+.rathna-header-wrapper .opening-hours .info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+}
+.rathna-header-wrapper .opening-hours .info span { font-size: 11px; color: #5f6b4d; }
+.rathna-header-wrapper .opening-hours .info h5 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--nav-text-color);
+    white-space: nowrap;
 }
 
-/* --------------------------------------------------------------------------
-   Compact main header / navigation bar
-   -------------------------------------------------------------------------- */
-nav.navbar.validnavs {
-    padding: 6px 0;
-}
-
-nav.navbar.less-logo ul.nav > li > a {
-    padding: 14px 16px;
-}
-
-/* 1200–1350px: the theme forces larger link padding with !important */
-@media only screen and (min-width: 1200px) and (max-width: 1350px) {
-    .navbar.validnavs.navbar-default .navbar-nav li a {
-        padding: 14px 10px !important;
+/* force horizontal menu on desktop (Bootstrap 5 makes .navbar-nav a column) */
+@media (min-width: 1024px) {
+    .rathna-header-wrapper .navbar-collapse,
+    .rathna-header-wrapper .navbar-collapse.collapse {
+        display: flex !important;
+        flex-basis: auto;
+        visibility: visible !important;
+        height: auto !important;
+        position: static !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        transform: none !important;
+        width: auto;
+        max-width: none;
     }
-}
-
-/* 1024–1199px: tighter links so the header stays on one row */
-@media only screen and (min-width: 1024px) and (max-width: 1199px) {
-    .navbar.validnavs.navbar-default .navbar-nav li a {
-        padding: 14px 8px !important;
-    }
-}
-
-/* Tablet: the top bar already shows the phone, so drop the opening hours
-   below 1280px to keep the header compact and on a single row. */
-@media only screen and (min-width: 1024px) and (max-width: 1279px) {
-    .navbar .attr-right {
-        display: none;
-    }
-}
-
-/* 1024–1038px: the navigation script keeps the mobile drawer until the client
-   width exceeds 1023px, while the CSS hides the mobile header at 1024px.
-   Show the mobile header + toggle so the menu is never left without a control. */
-@media only screen and (min-width: 1024px) and (max-width: 1038px) {
-    .navbar.less-logo .navbar-header {
-        display: flex;
+    .rathna-header-wrapper .navbar-nav,
+    .rathna-header-wrapper ul.nav.navbar-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
         align-items: center;
-        gap: 10px;
+        float: none !important;
+        width: auto !important;
     }
+    .rathna-header-wrapper .navbar-nav > li {
+        display: block;
+        float: none !important;
+        width: auto !important;
+        border: 0;
+    }
+}
 
-    nav.navbar.validnavs .navbar-toggle {
-        display: inline-block;
+/* mobile-only bits hidden on desktop */
+.rathna-header-wrapper .navbar-header { display: none; }
+@media (min-width: 1024px) {
+    .rathna-header-wrapper .navbar-collapse > img,
+    .rathna-header-wrapper .navbar-collapse > .navbar-toggle { display: none; }
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1399px) {
+    .rathna-header-wrapper .navbar-nav > li > a { gap: 4px; padding: 22px 8px !important; font-size: 12px; }
+    .rathna-header-wrapper .opening-hours { padding: 9px 16px 9px 12px; }
+}
+@media (max-width: 1199px) {
+    .rathna-header-wrapper .nav-container-pill { padding: 0 12px 0 16px; }
+    .rathna-header-wrapper .navbar-nav > li > a { gap: 3px; padding: 22px 6px !important; font-size: 11.5px; }
+    .rathna-header-wrapper .navbar-nav > li.active > a { padding: 10px 10px !important; }
+    .rathna-header-wrapper .attr-right { display: none; }
+    .rathna-header-wrapper .contact-item .icon { margin-right: 8px; }
+}
+
+@media (max-width: 1023px) {
+    .rathna-header-wrapper { background: var(--g-bottom); }
+    .rathna-header-wrapper .top-bar,
+    .rathna-header-wrapper .logo-column,
+    .rathna-header-wrapper .attr-right { display: none; }
+
+    .rathna-header-wrapper .rathna-nav-header {
+        margin: 0;
         padding: 10px 0;
+        background: var(--g-bottom);
+    }
+    .rathna-header-wrapper .nav-container-pill {
+        min-height: 0;
+        padding: 0;
+        background: transparent;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    /* --- Mobile header: hamburger (left) + centred logo --- */
+    .rathna-header-wrapper .navbar-header {
+        display: grid !important;
+        grid-template-columns: 44px 1fr 44px;
+        align-items: center;
+        width: 100%;
+    }
+    .rathna-header-wrapper .navbar-header .navbar-toggle {
+        grid-column: 1;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+        color: #fff;
+        background: transparent;
+        border: 0;
+        border-radius: 6px;
         font-size: 22px;
     }
+    .rathna-header-wrapper .navbar-header .navbar-brand {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        grid-column: 2;
+        justify-self: center;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .rathna-header-wrapper .navbar-brand img { height: 40px; width: auto; display: block; }
+
+    /* --- Off-canvas sidebar menu --- */
+    nav.navbar.validnavs.mobile-sidenav .navbar-collapse.collapse.collapse-mobile {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 320px;
+        max-width: 86vw;
+        height: 100vh;
+        height: 100dvh;
+        min-height: 0;
+        margin: 0;
+        padding: 68px 0 26px;
+        background: #fff;
+        box-shadow: 8px 0 30px rgba(0, 0, 0, .25);
+        overflow-x: hidden;
+        overflow-y: auto;
+        z-index: 1001;
+        transition: left .28s ease;
+    }
+    nav.navbar.validnavs.mobile-sidenav .navbar-collapse.collapse.collapse-mobile.show { left: 0; }
+    .rathna-header-wrapper .navbar-collapse > img {
+        display: block;
+        position: absolute;
+        top: 16px;
+        left: 20px;
+        height: 36px;
+        width: auto;
+    }
+    .rathna-header-wrapper .navbar-collapse > .navbar-toggle {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+        color: var(--nav-text-color);
+        background: transparent;
+        border: 0;
+        font-size: 20px;
+    }
+    .rathna-header-wrapper .navbar-nav { display: block; }
+    .rathna-header-wrapper .navbar-nav > li { border-bottom: 1px solid #eee; }
+    .rathna-header-wrapper .navbar-nav > li:last-child { border-bottom: 0; }
+    .rathna-header-wrapper .navbar-nav > li > a { display: flex; padding: 14px 22px !important; }
+    .rathna-header-wrapper .navbar-nav > li.active > a {
+        background: var(--nav-cream) !important;
+        color: var(--home-btn-green) !important;
+        margin: 0;
+        padding: 14px 22px !important;
+        border-left: 4px solid var(--home-btn-green);
+        border-radius: 0;
+    }
+    .rathna-header-wrapper .overlay-screen.opened {
+        z-index: 1000;
+        background: rgba(12, 24, 6, .55);
+        opacity: 1;
+        transition: opacity .28s ease;
+    }
+    body.nav-drawer-open { overflow: hidden; }
 }
 
-/* Compact hamburger on small screens */
-@media only screen and (max-width: 1023px) {
-    nav.navbar.validnavs .navbar-toggle {
+/* ==========================================================================
+   STICKY NAVBAR (class "is-stuck" is added by the small script in index.html)
+   ========================================================================== */
+.rathna-header-wrapper.is-stuck .rathna-nav-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    margin: 0;
+    padding: 10px 0;
+    animation: rathnaStickyIn .3s ease;
+}
+.rathna-header-wrapper.is-stuck .nav-container-pill {
+    min-height: 58px;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, .22);
+}
+.rathna-header-wrapper.is-stuck .navbar-nav > li > a { padding-top: 19px !important; padding-bottom: 19px !important; }
+.rathna-header-wrapper.is-stuck .navbar-nav > li.active > a { padding-top: 11px !important; padding-bottom: 11px !important; }
+
+@keyframes rathnaStickyIn {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
+}
+
+@media (max-width: 1023px) {
+    .rathna-header-wrapper.is-stuck .rathna-nav-header {
         padding: 10px 0;
+        background: var(--g-bottom);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
     }
 }
-
-/* Keep the sticky navigation on one row: smaller brand + compact links */
-nav.navbar.less-logo.sticked .navbar-brand > img {
-    width: 44px;
-    height: 44px;
-}
-
-nav.navbar.validnavs .attr-right .attr-nav li a {
-    padding: 14px 0;
-}
-
-/* Square brand logo */
-.navbar-brand > img {
-    width: 64px;
-    height: 64px;
-    object-fit: contain;
-}
-
-/* Footer logo */
-.footer-item .logo {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
+@media (prefers-reduced-motion: reduce) {
+    .rathna-header-wrapper.is-stuck .rathna-nav-header { animation: none; }
 }

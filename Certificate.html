@@ -47,185 +47,111 @@
     <div class="se-pre-con"></div>
     <!-- Preloader Ends -->
 
-    <!-- Start Header Top 
+    <!-- Start Header
     ============================================= -->
-    <div class="top-bar top-style-one bg-dark text-light">
-        <div class="container">
-            <div class="row align-center">
-                <div class="col-xl-4 col-lg-4 col-md-4 info">
-                    <ul>
+    <div class="rathna-header-wrapper">
+
+        <!-- ===== Top bar (dark green) ===== -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-row">
+
+                    <!-- Left: language + phone -->
+                    <ul class="top-info-list top-left">
                         <li class="lang-item">
                             <div class="lang-switcher" data-lang-switcher></div>
                         </li>
-                        <li>
-                            <div class="icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
+                        <li class="contact-item">
+                            <div class="icon"><i class="fas fa-phone-alt"></i></div>
                             <div class="content">
                                 <span>Call Anytime</span>
                                 <a href="https://api.whatsapp.com/send?phone=919629165966">+91 9629165966</a>
                             </div>
                         </li>
                     </ul>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 logo">
-                    <a href="#"><img src="assets/logo.webp" alt="Logo"></a>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 text-end info">
-                    <ul>
-                        <li>
-                            <div class="icon">
-                                <i class="fas fa-comments-alt-dollar"></i>
-                            </div>
+
+                    <!-- Center: logo -->
+                    <div class="logo-column">
+                        <a class="header-logo" href="index.html">
+                            <img src="assets/logo.webp" alt="Rathna Bio Coir logo">
+                        </a>
+                    </div>
+
+                    <!-- Right: email -->
+                    <ul class="top-info-list top-right">
+                        <li class="contact-item">
+                            <div class="icon"><i class="fas fa-envelope"></i></div>
                             <div class="content">
                                 <span>Email</span>
                                 <a href="mailto:rathnabiocoirproduct@gmail.com">rathnabiocoirproduct@gmail.com</a>
                             </div>
                         </li>
                     </ul>
+
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Header Top -->
 
-    <!-- Header 
-    ============================================= -->
-    <header>
-        <!-- Start Navigation -->
-        <nav class="navbar mobile-sidenav less-logo navbar-common navbar-default validnavs navbar-sticky">
+        <!-- ===== Navbar (cream pill) ===== -->
+        <header class="rathna-nav-header">
+            <nav class="navbar mobile-sidenav less-logo navbar-common navbar-default validnavs">
 
-            <!-- Start Top Search -->
-            <div class="top-search">
-                <div class="container-xl">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                        <input type="text" class="form-control" placeholder="Search">
-                        <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-                    </div>
-                </div>
-            </div>
-            <!-- End Top Search -->
+                <div class="container">
+                    <div class="nav-container-pill">
 
-            <div class="container d-flex justify-content-between align-items-center">            
-                
+                        <!-- Mobile brand + toggle -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <a class="navbar-brand" href="index.html">
+                                <img src="assets/logo.webp" class="logo" alt="Logo">
+                            </a>
+                        </div>
 
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <a class="navbar-brand" href="index.html"><img src="assets/logo.webp" class="logo" alt="Logo"></a>
-                </div>
-                <!-- End Header Navigation -->
+                        <!-- Menu -->
+                        <div class="collapse navbar-collapse" id="navbar-menu">
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navbar-menu">
+                            <img src="assets/logo.webp" alt="Logo">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                                <i class="fa fa-times"></i>
+                            </button>
 
-                    <img src="assets/logo.webp" alt="Logo">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                        <i class="fa fa-times"></i>
-                    </button>
-                    
-                    <ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="dropdown">
-                            <a href="index.html" >Home</a>
-                          <!-- <ul class="dropdown-menu">
-                                <li><a href="index.html">Agriculture</a></li>
-                                <li><a href="index-3.html">Farm Shop</a></li>
-                                <li><a href="index-2.html">Organic Farm</a></li>
-                                <li><a href="agriculture-shop.html">Agriculture Shop</a></li>
-                                <li><a href="gardening.html">Home Gardening</a></li>
-                            </ul>-->
-                        </li>
-                        <li class="dropdown">
-                            <a href="about1.html">About Us</a>
-                           <!-- <ul class="dropdown-menu">
-                               <li><a href="about-us.html">About Us</a></li>
-                               <li><a href="team.html">Team</a></li>
-                                <li><a href="team-details.html">Team Details</a></li>
-                                <li><a href="contact-us.html">Contact Us</a></li>
-                                <li><a href="faq.html">Faq</a></li>
-                                <li><a href="404.html">Error Page</a></li>
-                            </ul>-->
-                        </li>
-                        <li class="dropdown">
-                            <a href="Infrastructure.html">Infrastructure</a>
-                           <!-- <ul class="dropdown-menu">
-                                <li><a href="project.html">Project</a></li>
-                                <li><a href="project-details.html">Project Details</a></li>
-                            </ul>-->
-                        </li>
-                        <li class="dropdown">
-                            <a href="Product.html">Product</a>
-                         <!--   <ul class="dropdown-menu">
-                                <li><a href="services.html">Services Version One</a></li>
-                                <li><a href="services-2.html">Services Version Two</a></li>
-                                <li><a href="services-details.html">Services Details</a></li>
-                            </ul>-->
-                        </li>
-                      <!-- <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Enquiry</a>--> 
-                          <!--  <ul class="dropdown-menu">
-                                <li><a href="blog-standard.html">Blog Standard</a></li>
-                                <li><a href="blog-with-sidebar.html">Blog With Sidebar</a></li>
-                                <li><a href="blog-2-colum.html">Blog Grid Two Colum</a></li>
-                                <li><a href="blog-3-colum.html">Blog Grid Three Colum</a></li>
-                                <li><a href="blog-single.html">Blog Single</a></li>
-                                <li><a href="blog-single-with-sidebar.html">Blog Single With Sidebar</a></li>
-                            </ul>-->
-                        </li>
-                        <li class="dropdown">
-                            <a href="Gallery.html">Gallery</a>
-                            <!--<ul class="dropdown-menu">
-                                <li><a href="shop.html">Shop</a></li>
-                                <li><a href="shop-single.html">Shop Single</a></li>
-                                <li><a href="shop-single-thumb-only.html">Shop Single Two</a></li>
-                            </ul>-->
-                        </li>
-                        <li class="dropdown">
-                            <a href="Certificate.html">ISO Certificate</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="contact-us.html">Contact</a>
-                            <!--<ul class="dropdown-menu">
-                                <li><a href="shop.html">Shop</a></li>
-                                <li><a href="shop-single.html">Shop Single</a></li>
-                                <li><a href="shop-single-thumb-only.html">Shop Single Two</a></li>
-                            </ul>-->
-                        </li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
+                            <ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">
+                                <li>
+                                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                                </li>
+                                <li><a href="about1.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                                <li><a href="Infrastructure.html"><i class="fas fa-industry"></i> Infrastructure</a></li>
+                                <li>
+                                    <a href="Product.html"><i class="fas fa-leaf"></i> Product</a>
+                                </li>
+                                <li><a href="Gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+                                <li class="active"><a href="Certificate.html"><i class="fas fa-award"></i> ISO Certificate</a></li>
+                                <li><a href="contact-us.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                            </ul>
+                        </div>
 
-                <div class="attr-right">
-                    <!-- Start Atribute Navigation -->
-                    <div class="attr-nav">
-                        <ul>
-                            <li class="opening-hours">
-                                <div class="call">
+                        <!-- Opening hours -->
+                        <div class="attr-right">
+                            <div class="attr-nav">
+                                <div class="opening-hours">
+                                    <div class="icon"><i class="far fa-clock"></i></div>
                                     <div class="info">
-                                        <p>Opening hours</p>
+                                        <span>Opening Hours</span>
                                         <h5>Mon - Sat 9:00 - 19:00</h5>
                                     </div>
                                 </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- End Atribute Navigation -->
+                            </div>
+                        </div>
 
+                    </div>
                 </div>
 
-            </div>  
-
-            <!-- Overlay screen for menu -->
-            <div class="overlay-screen"></div>
-            <!-- End Overlay screen for menu -->
-
-        </nav>
-        <!-- End Navigation -->
-    </header>
-    <!-- End Header -->
-
+                <div class="overlay-screen"></div>
+            </nav>
+        </header>
+    </div>
     <!-- End Header -->
 
     <!-- Start Breadcrumb 
@@ -519,5 +445,88 @@
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
     <script src="assets/js/language-switcher.js"></script>
     <!-- End Language Switcher -->
+
+    <!-- Sticky header: keeps the navbar at the top while scrolling -->
+    <script>
+    (function () {
+        var wrap = document.querySelector('.rathna-header-wrapper');
+        var bar  = document.querySelector('.rathna-header-wrapper .top-bar');
+        if (!wrap) return;
+        var stuck = false, fullHeight = 0;
+
+        function threshold() {
+            var h = bar && bar.offsetHeight ? bar.offsetHeight : 0;
+            return h || 60;
+        }
+        function update() {
+            var y = window.pageYOffset || document.documentElement.scrollTop;
+            if (!stuck && y > threshold()) {
+                fullHeight = wrap.offsetHeight;      // keep page from jumping
+                wrap.style.height = fullHeight + 'px';
+                wrap.classList.add('is-stuck');
+                stuck = true;
+            } else if (stuck && y <= threshold()) {
+                wrap.classList.remove('is-stuck');
+                wrap.style.height = '';
+                stuck = false;
+            }
+        }
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', function () {
+            if (stuck) { wrap.classList.remove('is-stuck'); wrap.style.height = ''; stuck = false; }
+            update();
+        });
+        update();
+    })();
+
+
+    // Mobile off-canvas menu: keep the hamburger, drawer and overlay in sync
+    (function () {
+        var nav = document.querySelector('.rathna-header-wrapper nav.navbar');
+        if (!nav) return;
+        var collapse = nav.querySelector('.navbar-collapse');
+        var burger = nav.querySelector('.navbar-header .navbar-toggle');
+        var closeBtn = collapse ? collapse.querySelector('.navbar-toggle') : null;
+        var overlay = nav.querySelector('.overlay-screen');
+        var header = document.querySelector('.rathna-header-wrapper header');
+        var icon = burger ? burger.querySelector('i') : null;
+
+        function closeDrawer() {
+            if (collapse) collapse.classList.remove('show');
+            if (overlay) overlay.classList.remove('opened');
+            nav.classList.remove('navbar-responsive', 'force-sticky');
+            if (header) header.classList.remove('adjust-height');
+            sync();
+        }
+        function sync() {
+            var open = collapse && collapse.classList.contains('show');
+            document.body.classList.toggle('nav-drawer-open', !!open);
+            if (icon) {
+                icon.classList.toggle('fa-bars', !open);
+                icon.classList.toggle('fa-times', !!open);
+            }
+        }
+        // validnavs.js adds/removes the "show" class (sometimes on window load),
+        // so watch the class instead of relying on click-handler order.
+        if (collapse && window.MutationObserver) {
+            new MutationObserver(sync).observe(collapse, { attributes: true, attributeFilter: ['class'] });
+        }
+        if (burger) burger.addEventListener('click', function () { setTimeout(sync, 0); });
+        if (closeBtn) closeBtn.addEventListener('click', function () { setTimeout(sync, 0); });
+        if (overlay) overlay.addEventListener('click', closeDrawer);
+        if (collapse) {
+            collapse.querySelectorAll('.navbar-nav a').forEach(function (link) {
+                link.addEventListener('click', closeDrawer);
+            });
+        }
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && collapse && collapse.classList.contains('show')) closeDrawer();
+        });
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 1024 && collapse && collapse.classList.contains('show')) closeDrawer();
+        });
+        sync();
+    })();
+    </script>
 </body>
 </html>
