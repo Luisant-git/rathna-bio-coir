@@ -2,6 +2,18 @@
    # Enquiry Modal - Product Page
 ================================================== */
 
+// Auto open enquiry modal on first visit only (once per session)
+$(document).ready(function() {
+    // Check if popup was already shown in this session
+    if (!sessionStorage.getItem('enquiryModalShown')) {
+        setTimeout(function() {
+            $('#enquiryModal').addClass('active');
+            $('body').css('overflow', 'hidden');
+            sessionStorage.setItem('enquiryModalShown', 'true');
+        }, 3000);
+    }
+});
+
 // Open enquiry modal when clicking "Enquiry Now" on product cards
 $('.open-enquiry-modal').on('click', function(e) {
     e.preventDefault();
