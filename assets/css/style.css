@@ -360,11 +360,10 @@ p {
 }
 
 .rathna-header-wrapper .enquiry-nav-btn:hover {
-    background: #0f3d2e;
-    color: #f7c35f;
+    background: #3650FA; /* Replace with your original button color */
+    color: #fff;
     transform: scale(1.1);
-    box-shadow: 0 8px 25px rgba(15, 61, 46, 0.5);
-    border-color: #0f3d2e;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     animation: enquiryBtnPulse 0.4s ease-in-out;
 }
 
@@ -9790,3 +9789,36 @@ ul.list-two li i {
 		font-size: 16px;
 	}
 }	
+
+/* Force Enquiry Button Background */
+.rathna-header-wrapper .enquiry-nav-btn,
+.rathna-header-wrapper .enquiry-nav-btn:hover,
+.rathna-header-wrapper .enquiry-nav-btn:focus,
+.rathna-header-wrapper .enquiry-nav-btn:active {
+    background: #49a760 !important;
+    background-color: #49a760 !important;
+    color: #ffffff !important;
+    border: 2px solid #49a760 !important;
+    opacity: 1 !important;
+}
+
+/* Keep shine animation without hiding background */
+.rathna-header-wrapper .enquiry-nav-btn::before {
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Keep text and icon visible */
+.rathna-header-wrapper .enquiry-nav-btn span,
+.rathna-header-wrapper .enquiry-nav-btn i {
+    position: relative;
+    z-index: 3;
+}
+.rathna-header-wrapper .enquiry-nav-btn:hover {
+    background: #e7a33c !important;
+    background-color: #f7c273 !important;
+    color: #ffffff !important;
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
