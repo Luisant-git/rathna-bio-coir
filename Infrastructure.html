@@ -508,6 +508,7 @@
     <script src="assets/js/TweenMax.min.js"></script>
     <script src="assets/js/validnavs.js"></script>
     <script src="assets/js/main.js"></script>
+<script src="assets/js/enquiry-modal.js"></script>
 
     <!-- Start Language Switcher
     ============================================= -->
@@ -645,6 +646,75 @@
         <li><a href="https://www.instagram.com/rathnabiocoirproduct" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
         <li><a href="https://www.linkedin.com/company/rathna-bio-coir-product" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
     </ul>
+
+    <!-- Enquiry Modal -->
+    <div id="enquiryModal" class="enquiry-modal-overlay">
+        <div class="enquiry-modal-content">
+            <button class="enquiry-modal-close">&times;</button>
+            <div class="enquiry-modal-header">
+                <h3><i class="fas fa-paper-plane"></i> Send Enquiry</h3>
+                <p class="enquiry-modal-subtitle">Get in touch with us about our products</p>
+            </div>
+            <form action="assets/mail/contact.php" method="POST" class="contact-form enquiry-form">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <input class="form-control" id="ename" name="name" placeholder="Your Name" type="text" required>
+                            <span class="alert-error"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <input class="form-control" id="eemail" name="email" placeholder="Email*" type="email" required>
+                            <span class="alert-error"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <input class="form-control" id="ephone" name="phone" placeholder="Phone" type="text" required>
+                            <span class="alert-error"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <select class="nice-select" id="eproduct" name="product" required>
+                                <option value="">Select Product</option>
+                                <option value="Husk Chips Blocks">Husk Chips Blocks</option>
+                                <option value="Coco Peat Blocks">Coco Peat Blocks</option>
+                                <option value="Coco Grow Bag Slabs &amp; Cubes">Coco Grow Bag Slabs &amp; Cubes</option>
+                                <option value="Coco Cut Fibre Blocks">Coco Cut Fibre Blocks</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            <span class="alert-error"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group comments">
+                            <textarea class="form-control" id="ecomments" name="comments" placeholder="Your Message *" rows="4" required></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <button type="submit" name="submit" id="esubmit" class="enquiry-submit-btn">
+                            <i class="fa fa-paper-plane"></i> Send Enquiry
+                        </button>
+                    </div>
+                </div>
+                <!-- Alert Message -->
+                <div class="col-lg-12 alert-notification">
+                    <div id="emessage" class="alert-msg"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End Enquiry Modal -->
 
 </body>
 </html>
