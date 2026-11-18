@@ -724,10 +724,8 @@
 		$(window).on('scroll', function() {
 			if ($(window).scrollTop() > 500) {
 				scrollToTopBtn.addClass('show');
-				$('.whatsapp-float').addClass('show');
 			} else {
 				scrollToTopBtn.removeClass('show');
-				$('.whatsapp-float').removeClass('show');
 			}
 		});
 
