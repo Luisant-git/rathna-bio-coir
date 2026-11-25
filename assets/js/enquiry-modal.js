@@ -15,19 +15,21 @@ $(document).ready(function() {
 });
 
 // Open enquiry modal when clicking "Enquiry Now" on product cards
-$('.open-enquiry-modal').on('click', function(e) {
+$(document).on('click', '.open-enquiry-modal', function(e) {
     e.preventDefault();
     var productName = $(this).data('product');
+    var formEl = $('.enquiry-form')[0];
+    if (formEl) formEl.reset();
+
     $('#enquiryModal').addClass('active');
-    // Pre-select product in dropdown
+    // Pre-select product in dropdown after reset
     if (productName) {
         $('#eproduct').val(productName).trigger('change');
-        $('.nice-select').niceSelect('update');
     }
+    $('.nice-select').niceSelect('update');
+
     // Clear any previous messages
     $('#emessage').html('').removeClass('alert-success alert-error-show').hide();
-    // Reset form
-    $('.enquiry-form')[0].reset();
     $('body').css('overflow', 'hidden');
 });
 
@@ -54,9 +56,10 @@ $(document).on('keydown', function(e) {
     }
 });
 
-// Enquiry form submission via EmailJS
-$('.enquiry-form').on('submit', function(e) {
+// Enquiry form submission via EmailJS (delegated so it works even when modal HTML is below the script)
+$(document).on('submit', '.enquiry-form', function(e) {
     e.preventDefault();
+    e.stopPropagation();
     var formInstance = $(this);
 
     var formData = {
@@ -77,41 +80,52 @@ $('.enquiry-form').on('submit', function(e) {
         return false;
     }
 
-    $('#emessage').slideUp(300, function() {
-        $('#emessage').hide().removeClass('alert-success alert-error-show');
-        $('#esubmit')
-            .after('<img src="assets/img/ajax-loader.gif" class="loader" />')
-            .attr('disabled', 'disabled');
+    $('#emessage').hide().removeClass('alert-success alert-error-show');
+    $('.enquiry-form img.loader').remove();
+    $('#esubmit')
+        .after('<img src="assets/img/ajax-loader.gif" class="loader" />')
+        .attr('disabled', 'disabled');
 
-        window.sendRathnaEmail(formData)
-            .then(function() {
-                $('.enquiry-form img.loader').fadeOut('slow', function() {
-                    $(this).remove();
-                });
-                $('#esubmit').removeAttr('disabled');
+    var sendPromise = window.sendRathnaEmail
+        ? window.sendRathnaEmail(formData)
+        : emailjs.send('service_1mpbo2n', 'template_nvf0g85', {
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            phone: formData.phone.trim(),
+            product: formData.product && formData.product.trim() ? formData.product.trim() : 'General Enquiry',
+            message: formData.message.trim(),
+            form_type: formData.form_type
+        }, { publicKey: 'GhGEY16BYGjW78Fsf' });
 
-                $('#emessage')
-                    .html("<div class='alert alert-success'><h4>Enquiry Submitted!</h4><p>Thank you for your enquiry. We will get back to you shortly.</p></div>")
-                    .addClass('alert-success')
-                    .slideDown('slow');
-                formInstance[0].reset();
-                $('.nice-select').niceSelect('update');
-
-                setTimeout(function() {
-                    closeEnquiryModal();
-                }, 4000);
-            })
-            .catch(function(err) {
-                console.error('EmailJS Enquiry Error:', err);
-                $('.enquiry-form img.loader').fadeOut('slow', function() {
-                    $(this).remove();
-                });
-                $('#esubmit').removeAttr('disabled');
-                $('#emessage')
-                    .html('<div class="alert alert-error">Failed to send enquiry. Please try again or call +91 9629165966.</div>')
-                    .addClass('alert-error-show')
-                    .slideDown('slow');
+    sendPromise
+        .then(function() {
+            $('.enquiry-form img.loader').fadeOut('slow', function() {
+                $(this).remove();
             });
-    });
+            $('#esubmit').removeAttr('disabled');
+
+            $('#emessage')
+                .html("<div class='alert alert-success'><h4>Enquiry Submitted!</h4><p>Thank you for your enquiry. We will get back to you shortly.</p></div>")
+                .addClass('alert-success')
+                .slideDown('slow');
+            formInstance[0].reset();
+            $('.nice-select').niceSelect('update');
+
+            setTimeout(function() {
+                closeEnquiryModal();
+            }, 4000);
+        })
+        .catch(function(err) {
+            console.error('EmailJS Enquiry Error:', err);
+            $('.enquiry-form img.loader').fadeOut('slow', function() {
+                $(this).remove();
+            });
+            $('#esubmit').removeAttr('disabled');
+            $('#emessage')
+                .html('<div class="alert alert-error">Failed to send enquiry. Please try again or call +91 9629165966.</div>')
+                .addClass('alert-error-show')
+                .slideDown('slow');
+        });
+
     return false;
 });
