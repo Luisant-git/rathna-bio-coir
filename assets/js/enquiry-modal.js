@@ -54,44 +54,64 @@ $(document).on('keydown', function(e) {
     }
 });
 
-// Enquiry form submission via AJAX
+// Enquiry form submission via EmailJS
 $('.enquiry-form').on('submit', function(e) {
     e.preventDefault();
     var formInstance = $(this);
-    var action = formInstance.attr('action');
 
-    $('#emessage').slideUp(750, function() {
-        $('#emessage').hide();
+    var formData = {
+        name: $('#ename').val() || '',
+        email: $('#eemail').val() || '',
+        phone: $('#ephone').val() || '',
+        product: $('#eproduct').val() || '',
+        message: $('#ecomments').val() || '',
+        form_type: 'Product Enquiry Modal'
+    };
+
+    var validationError = window.validateRathnaForm
+        ? window.validateRathnaForm(formData)
+        : null;
+
+    if (validationError) {
+        $('#emessage').html('<div class="alert alert-error">' + validationError + '</div>').addClass('alert-error-show').slideDown('slow');
+        return false;
+    }
+
+    $('#emessage').slideUp(300, function() {
+        $('#emessage').hide().removeClass('alert-success alert-error-show');
         $('#esubmit')
             .after('<img src="assets/img/ajax-loader.gif" class="loader" />')
             .attr('disabled', 'disabled');
 
-        $.post(action, {
-            name: $('#ename').val(),
-            email: $('#eemail').val(),
-            phone: $('#ephone').val(),
-            product: $('#eproduct').val(),
-            comments: $('#ecomments').val()
-        }, function(data) {
-            $('.enquiry-form img.loader').fadeOut('slow', function() {
-                $(this).remove();
-            });
-            $('#esubmit').removeAttr('disabled');
+        window.sendRathnaEmail(formData)
+            .then(function() {
+                $('.enquiry-form img.loader').fadeOut('slow', function() {
+                    $(this).remove();
+                });
+                $('#esubmit').removeAttr('disabled');
 
-            if (data.indexOf('alert-success') !== -1) {
-                // Show success message in modal
-                $('#emessage').html("<div class='alert alert-success'><h4>Enquiry Submitted!</h4><p>Thank you for your enquiry. We will get back to you shortly.</p></div>").addClass('alert-success').slideDown('slow');
+                $('#emessage')
+                    .html("<div class='alert alert-success'><h4>Enquiry Submitted!</h4><p>Thank you for your enquiry. We will get back to you shortly.</p></div>")
+                    .addClass('alert-success')
+                    .slideDown('slow');
                 formInstance[0].reset();
-                // Auto close after 4 seconds
+                $('.nice-select').niceSelect('update');
+
                 setTimeout(function() {
                     closeEnquiryModal();
                 }, 4000);
-            } else {
-                // Show error inline
-                document.getElementById('emessage').innerHTML = data;
-                $('#emessage').addClass('alert-error-show').slideDown('slow');
-            }
-        });
+            })
+            .catch(function(err) {
+                console.error('EmailJS Enquiry Error:', err);
+                $('.enquiry-form img.loader').fadeOut('slow', function() {
+                    $(this).remove();
+                });
+                $('#esubmit').removeAttr('disabled');
+                $('#emessage')
+                    .html('<div class="alert alert-error">Failed to send enquiry. Please try again or call +91 9629165966.</div>')
+                    .addClass('alert-error-show')
+                    .slideDown('slow');
+            });
     });
     return false;
 });

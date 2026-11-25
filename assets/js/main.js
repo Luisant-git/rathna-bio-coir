@@ -660,51 +660,104 @@
 	$('select.nice-select').niceSelect();
 
 		/* ==================================================
-		    Contact Form Validations
+		    EmailJS Configuration & Shared Helpers
 		================================================== */
-		$('.contact-form').each(function() {
+		var RATHNA_EMAILJS = {
+			serviceId: 'service_1mpbo2n',
+			templateId: 'template_nvf0g85',
+			publicKey: 'GhGEY16BYGjW78Fsf'
+		};
+
+		if (typeof emailjs !== 'undefined') {
+			emailjs.init({ publicKey: RATHNA_EMAILJS.publicKey });
+		}
+
+		window.validateRathnaForm = function(data) {
+			var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			if (!data.name || !data.name.trim()) {
+				return 'You must enter your name.';
+			}
+			if (!data.email || !data.email.trim()) {
+				return 'You must enter your email address.';
+			}
+			if (!emailRegex.test(data.email.trim())) {
+				return 'You must enter a valid email address.';
+			}
+			if (!data.phone || !data.phone.trim()) {
+				return 'You must enter your phone number.';
+			}
+			if (!data.message || !data.message.trim()) {
+				return 'You must enter your message.';
+			}
+			return null;
+		};
+
+		window.sendRathnaEmail = function(data) {
+			if (typeof emailjs === 'undefined') {
+				return Promise.reject(new Error('EmailJS SDK is not loaded.'));
+			}
+			return emailjs.send(RATHNA_EMAILJS.serviceId, RATHNA_EMAILJS.templateId, {
+				name: data.name.trim(),
+				email: data.email.trim(),
+				phone: data.phone.trim(),
+				product: data.product && data.product.trim() ? data.product.trim() : 'General Enquiry',
+				message: data.message.trim(),
+				form_type: data.form_type || 'Website Form'
+			});
+		};
+
+		/* ==================================================
+		    Contact Form Validations (EmailJS)
+		================================================== */
+		$('.contact-form:not(.enquiry-form)').each(function() {
 			var formInstance = $(this);
-			formInstance.submit(function() {
+			formInstance.on('submit', function(e) {
+				e.preventDefault();
 
-				var action = $(this).attr('action');
+				var formData = {
+					name: $('#name').val() || '',
+					email: $('#email').val() || '',
+					phone: $('#phone').val() || '',
+					product: $('#product').val() || '',
+					message: $('#comments').val() || '',
+					form_type: 'Contact Us Page'
+				};
 
-				$("#message").slideUp(750, function() {
+				var validationError = window.validateRathnaForm(formData);
+				if (validationError) {
+					$('#message').html('<div class="alert alert-error">' + validationError + '</div>').slideDown('slow');
+					return false;
+				}
+
+				$("#message").slideUp(300, function() {
 					$('#message').hide();
 
 					$('#submit')
 						.after('<img src="assets/img/ajax-loader.gif" class="loader" />')
 						.attr('disabled', 'disabled');
 
-					$.post(action, {
-							name: $('#name').val(),
-							email: $('#email').val(),
-							phone: $('#phone').val(),
-							product: $('#product').val(),
-							comments: $('#comments').val()
-						},
-						function(data) {
+					window.sendRathnaEmail(formData)
+						.then(function() {
 							$('.contact-form img.loader').fadeOut('slow', function() {
 								$(this).remove();
 							});
 							$('#submit').removeAttr('disabled');
 
-							// Check if success response
-							if (data.indexOf('alert-success') !== -1) {
-								// Show thank you modal
-								$('#thankYouModal').addClass('active');
-								// Clear form fields
-								formInstance[0].reset();
-								// Auto close after 5 seconds
-								setTimeout(function() {
-									$('#thankYouModal').removeClass('active');
-								}, 5000);
-							} else {
-								// Show error inline
-								document.getElementById('message').innerHTML = data;
-								$('#message').slideDown('slow');
-							}
-						}
-					);
+							$('#thankYouModal').addClass('active');
+							formInstance[0].reset();
+							$('.nice-select').niceSelect('update');
+							setTimeout(function() {
+								$('#thankYouModal').removeClass('active');
+							}, 5000);
+						})
+						.catch(function(err) {
+							console.error('EmailJS Contact Error:', err);
+							$('.contact-form img.loader').fadeOut('slow', function() {
+								$(this).remove();
+							});
+							$('#submit').removeAttr('disabled');
+							$('#message').html('<div class="alert alert-error">Failed to send message. Please try again or call +91 9629165966.</div>').slideDown('slow');
+						});
 				});
 				return false;
 			});
